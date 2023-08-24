@@ -23,9 +23,15 @@ public class ArrayStorage {
         }
     }
 
+    // получение резюме из массива
     Resume get(String uuid) {
-
-        return null;
+        Resume resumeId = null;
+        for (int i = 0; i < size; i++) {
+            if (storage[i].uuid.equals(uuid)) {
+                resumeId = storage[i];
+            }
+        }
+        return resumeId;
     }
 
     void delete(String uuid) {
