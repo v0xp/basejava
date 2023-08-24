@@ -9,11 +9,18 @@ public class ArrayStorage {
 
     // очищаем массив резюме (заполняем зачением null занятые резюме ячейки) и обнуляем сетчик резюме
     void clear() {
-        Arrays.fill(storage,0, size, null);
+        Arrays.fill(storage, 0, size, null);
         size = 0;
     }
 
     void save(Resume r) {
+        if (size == storage.length) {
+            System.out.println("Массив переполен");
+        } else {
+            //сохраняем полученный объект резюме в первую свободную ячейку и увеличиваем счетчик
+            storage[size] = r;
+            size++;
+        }
     }
 
     Resume get(String uuid) {
