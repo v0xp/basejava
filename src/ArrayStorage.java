@@ -36,14 +36,9 @@ public class ArrayStorage {
     // метод удаления резюме
     void delete(String uuid) {
         for (int i = 0; i < size - 1; i++) {
-            // присваиваем найденному резюме следующее значение
+            // присваиваем найденному резюме последнее значение
             if (storage[i].uuid.equals(uuid)) {
-                storage[i] = storage[i + 1];
-
-                //смещаем значения элементов влево путем присвоения следующего за ним значения. последнему присваиваем null
-            } else if (i > 0 && storage[i - 1].uuid.equals(storage[i].uuid)) {
-                storage[i] = storage[i + 1];
-                storage[size] = null;
+                storage[i] = storage[size - 1];
                 size--;
             }
         }
