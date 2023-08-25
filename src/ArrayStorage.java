@@ -56,12 +56,10 @@ public class ArrayStorage {
 
     // получение заполненного массива
     Resume[] getAll() {
-
         return Arrays.copyOf(storage, size);
     }
 
     int size() {
-
         return size;
     }
 }
