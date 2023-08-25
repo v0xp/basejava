@@ -14,7 +14,7 @@ public class ArrayStorage {
     }
 
     void save(Resume r) {
-        if (size == storage.length) {
+        if (size >= storage.length) {
             System.out.println("Массив переполен");
         } else {
             //сохраняем полученный объект резюме в первую свободную ячейку и увеличиваем счетчик
