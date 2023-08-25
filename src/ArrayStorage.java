@@ -25,13 +25,12 @@ public class ArrayStorage {
 
     // получение резюме из массива
     Resume get(String uuid) {
-        Resume resumeId = null;
         for (int i = 0; i < size; i++) {
             if (storage[i].uuid.equals(uuid)) {
-                resumeId = storage[i];
+                return storage[i];
             }
         }
-        return resumeId;
+        return null;
     }
 
     // метод удаления резюме
