@@ -44,10 +44,9 @@ public class ArrayStorage {
             } else if (i > 0 && storage[i - 1].uuid.equals(storage[i].uuid)) {
                 storage[i] = storage[i + 1];
                 storage[size] = null;
+                size--;
             }
         }
-        //уменьшаем счетчик на единицу
-        size--;
     }
 
     /**
