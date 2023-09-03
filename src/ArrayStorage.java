@@ -15,7 +15,7 @@ public class ArrayStorage {
 
     void save(Resume r) {
         if (size >= storage.length) {
-            System.out.println("Массив переполен");
+            System.out.println("Массив переполнен");
         } else {
             //сохраняем полученный объект резюме в первую свободную ячейку и увеличиваем счетчик
             storage[size] = r;
@@ -44,6 +44,16 @@ public class ArrayStorage {
                 break;
             }
         }
+    }
+
+    void update(Resume resume){
+        for (int i = 0; i < size - 1; i++) {
+            if (storage[i].uuid.equals(resume.uuid)) {
+                storage[i] = resume;
+                break;
+            }
+        }
+        System.out.println("Резюме обновлено");
     }
 
     /**
