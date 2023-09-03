@@ -47,13 +47,15 @@ public class ArrayStorage {
     }
 
     void update(Resume resume){
-        for (int i = 0; i < size - 1; i++) {
+        for (int i = 0; i <= size - 1; i++) {
             if (storage[i].uuid.equals(resume.uuid)) {
                 storage[i] = resume;
+                System.out.println("Резюме обновлено");
                 break;
+            } else if (i == size - 1 && !Arrays.asList(storage).contains(resume)){
+                System.out.println("Резюме отсутствует");
             }
         }
-        System.out.println("Резюме обновлено");
     }
 
     /**
