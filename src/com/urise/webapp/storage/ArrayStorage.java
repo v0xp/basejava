@@ -1,3 +1,7 @@
+package com.urise.webapp.storage;
+
+import com.urise.webapp.model.Resume;
+
 import java.util.Arrays;
 
 /**
@@ -8,12 +12,12 @@ public class ArrayStorage {
     int size;
 
     // очищаем массив резюме (заполняем зачением null занятые резюме ячейки) и обнуляем сетчик резюме
-    void clear() {
+    public void clear() {
         Arrays.fill(storage, 0, size, null);
         size = 0;
     }
 
-    void save(Resume r) {
+    public void save(Resume r) {
         if (size >= storage.length) {
             System.out.println("Массив переполнен");
         } else {
@@ -24,7 +28,7 @@ public class ArrayStorage {
     }
 
     // получение резюме из массива
-    Resume get(String uuid) {
+    public Resume get(String uuid) {
         for (int i = 0; i < size; i++) {
             if (storage[i].uuid.equals(uuid)) {
                 return storage[i];
@@ -34,7 +38,7 @@ public class ArrayStorage {
     }
 
     // метод удаления резюме
-    void delete(String uuid) {
+    public void delete(String uuid) {
         for (int i = 0; i < size - 1; i++) {
             // присваиваем найденному резюме последнее значение
             if (storage[i].uuid.equals(uuid)) {
@@ -46,7 +50,7 @@ public class ArrayStorage {
         }
     }
 
-    void update(Resume resume){
+    public void update(Resume resume){
         for (int i = 0; i <= size - 1; i++) {
             if (storage[i].uuid.equals(resume.uuid)) {
                 storage[i] = resume;
@@ -63,11 +67,11 @@ public class ArrayStorage {
      */
 
     // получение заполненного массива
-    Resume[] getAll() {
+    public Resume[] getAll() {
         return Arrays.copyOf(storage, size);
     }
 
-    int size() {
+    public int size() {
         return size;
     }
 }
