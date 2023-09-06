@@ -34,6 +34,7 @@ public class ArrayStorage {
                 return storage[i];
             }
         }
+        System.out.println("Резюме отсутствует");
         return null;
     }
 
@@ -46,6 +47,8 @@ public class ArrayStorage {
                 storage[size - 1] = null;
                 size--;
                 break;
+            } else {
+                System.out.println("Резюме отсутствует");
             }
         }
     }
