@@ -57,9 +57,9 @@ public class ArrayStorage {
         for (int i = 0; i <= size - 1; i++) {
             if (storage[i].uuid.equals(resume.uuid)) {
                 storage[i] = resume;
-                System.out.println("Резюме обновлено");
+                System.out.println("Резюме " + storage[i] + " обновлено");
                 break;
-            } else if (i == size - 1 && !Arrays.asList(storage).contains(resume)){
+            } else if (i == size - 1){
                 System.out.println("Резюме отсутствует");
             }
         }
