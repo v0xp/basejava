@@ -20,6 +20,8 @@ public class ArrayStorage {
     public void save(Resume r) {
         if (size >= storage.length) {
             System.out.println("Массив переполнен");
+        } else if (Arrays.toString(storage).contains(r.uuid)){
+            System.out.println("Резюме уже существует");
         } else {
             //сохраняем полученный объект резюме в первую свободную ячейку и увеличиваем счетчик
             storage[size] = r;
