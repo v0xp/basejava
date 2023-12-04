@@ -23,4 +23,34 @@ public class SortedArrayStorage extends AbstractArrayStorage {
         Resume searchKey = new Resume(uuid);
         return Arrays.binarySearch(storage, 0, size, searchKey);
     }
+
+    @Override
+    protected Object getKey(String uuid) {
+        return null;
+    }
+
+    @Override
+    protected boolean isExist(Object resumeKey) {
+        return false;
+    }
+
+    @Override
+    protected void updateResume(Resume resume, Object resumeKey) {
+
+    }
+
+    @Override
+    protected void savedStorage(Resume r) {
+
+    }
+
+    @Override
+    protected void deletedStorage(Object resumeKey) {
+
+    }
+
+    @Override
+    protected Resume getResume(Object resumeKey) {
+        return null;
+    }
 }

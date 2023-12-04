@@ -26,4 +26,34 @@ public class ArrayStorage extends AbstractArrayStorage {
         }
         return -1;
     }
+
+    @Override
+    protected Object getKey(String uuid) {
+        return null;
+    }
+
+    @Override
+    protected boolean isExist(Object resumeKey) {
+        return false;
+    }
+
+    @Override
+    protected void updateResume(Resume resume, Object resumeKey) {
+
+    }
+
+    @Override
+    protected void savedStorage(Resume r) {
+
+    }
+
+    @Override
+    protected void deletedStorage(Object resumeKey) {
+
+    }
+
+    @Override
+    protected Resume getResume(Object resumeKey) {
+        return null;
+    }
 }
