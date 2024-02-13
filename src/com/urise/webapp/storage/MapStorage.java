@@ -1,41 +1,42 @@
 package com.urise.webapp.storage;
 
 import com.urise.webapp.model.Resume;
-
 import java.util.*;
 
-public class MapStorage extends AbstractStorage {
+import static com.urise.webapp.storage.AbstractArrayStorage.STORAGE_LIMIT;
 
-    protected final Map<String, Resume> map = new HashMap<>();
+public class MapStorage extends AbstractStorage<Resume> {
+
+    protected final Map<String, Resume> map = new HashMap<>(STORAGE_LIMIT);
 
     @Override
-    protected Object getKey(String uuid) {
-        return uuid;
+    protected Resume getKey(String uuid) {
+        return map.get(uuid);
     }
 
     @Override
-    protected boolean isExist(Object resumeKey) {
-        return map.containsKey((String)resumeKey);
+    protected boolean isExist(Resume resume) {
+        return resume != null;
     }
 
     @Override
-    protected void doUpdate(Resume resume, Object resumeKey) {
-        map.put((String) resumeKey, resume);
+    protected void doUpdate(Resume r, Resume resume) {
+        map.put(r.getUuid(), r);
     }
 
     @Override
-    protected void doSave(Resume resume, Object resumeKey) {
-        map.put(resume.getUuid(), resume);
+    protected void doSave(Resume r, Resume resume) {
+        map.put(r.getUuid(), r);
     }
 
     @Override
-    protected void doDelete(Object resumeKey) {
-        map.remove((String) resumeKey);
+    protected void doDelete(Resume resume) {
+        map.remove(resume.getUuid());
     }
 
     @Override
-    protected Resume doGet(Object resumeKey) {
-        return map.get((String) resumeKey);
+    protected Resume doGet(Resume resume) {
+        return resume;
     }
 
     @Override
@@ -43,9 +44,8 @@ public class MapStorage extends AbstractStorage {
         map.clear();
     }
 
-
-    public Resume[] getAll() {
-        return map.values().toArray(new Resume[0]);
+    public List<Resume> doCopyAll() {
+        return new ArrayList<>(map.values());
     }
 
     @Override

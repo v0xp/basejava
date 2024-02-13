@@ -4,8 +4,10 @@ import com.urise.webapp.exception.StorageException;
 import com.urise.webapp.model.Resume;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
-public abstract class AbstractArrayStorage extends AbstractStorage {
+public abstract class AbstractArrayStorage extends AbstractStorage<Integer> {
 
     protected final static int STORAGE_LIMIT = 10000;
     protected final static Resume[] storage = new Resume[STORAGE_LIMIT];
@@ -15,8 +17,7 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
 
     protected abstract void savedStorageIndex(Resume resume, int index);
 
-    protected abstract Integer getKey(String uuid);
-
+//    protected abstract Integer getKey(String uuid);
 
     public int size() {
         return size;
@@ -32,39 +33,39 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
      */
 
     @Override
-    public Resume[] getAll() {
-        return Arrays.copyOf(storage, size);
+    protected boolean isExist(Integer resumeKey) {
+        return resumeKey >= 0;
     }
 
     @Override
-    protected boolean isExist(Object resumeKey) {
-        return (Integer) resumeKey >= 0;
+    protected void doUpdate(Resume resume, Integer resumeKey) {
+        storage[resumeKey] = resume;
     }
 
     @Override
-    protected void doUpdate(Resume resume, Object resumeKey) {
-        storage[(int) resumeKey] = resume;
-    }
-
-    @Override
-    protected void doSave(Resume resume, Object resumeKey) {
+    protected void doSave(Resume resume, Integer resumeKey) {
         if (size >= STORAGE_LIMIT) {
             throw new StorageException("Массив переполнен", resume.getUuid());
         } else {
-            savedStorageIndex(resume, (int) resumeKey);
+            savedStorageIndex(resume, resumeKey);
             size++;
         }
     }
 
     @Override
-    protected void doDelete(Object resumeKey) {
-        deletedStorageIndex((int) resumeKey);
+    protected void doDelete(Integer resumeKey) {
+        deletedStorageIndex(resumeKey);
         storage[size - 1] = null;
         size--;
     }
 
     @Override
-    protected Resume doGet(Object resumeKey) {
-        return storage[(int) resumeKey];
+    protected Resume doGet(Integer resumeKey) {
+        return storage[resumeKey];
+    }
+
+    @Override
+    protected List<Resume> doCopyAll() {
+        return Arrays.asList(Arrays.copyOfRange(storage, 0, size));
     }
 }
