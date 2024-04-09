@@ -1,10 +1,15 @@
 package com.urise.webapp.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Link {
-    private final String name;
-    private final String url;
+public class Link  implements Serializable {
+    private static final long serialVersionUID = 1L;
+    private String name;
+    private String url;
+
+    public Link() {
+    }
 
     public Link(String name, String url) {
         Objects.requireNonNull(name, "items must not be null");

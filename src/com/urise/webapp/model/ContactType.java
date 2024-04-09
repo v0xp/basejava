@@ -8,7 +8,7 @@ public enum ContactType {
 
     private final String contacts;
 
-    ContactType(String contacts){
+    ContactType(String contacts) {
         this.contacts = contacts;
     }
 
